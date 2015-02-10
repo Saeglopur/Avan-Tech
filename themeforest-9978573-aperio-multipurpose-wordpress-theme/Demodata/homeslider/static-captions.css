@@ -1,0 +1,41 @@
+.tp-caption.brad-heading,
+.tp-caption.brad-heading-right,
+.tp-caption.brad-heading-white,
+.tp-caption.brad-heading-white-center{
+      font-size:47px;
+      letter-spacing:1.5px;
+      line-height:60px;
+      text-transform:uppercase;
+      color:#2d2d2d;
+      font-weight:700;
+}
+
+.tp-caption.brad-heading-right{
+  text-align:right;
+  }
+
+.tp-caption.brad-sub-heading,
+.tp-caption.brad-sub-heading-white{
+  font-family: "Raleway",Times,serif;
+      font-size:20px;
+      line-height:25px;
+      color:#595959;
+      font-weight:500;
+      font-style:normal;
+}
+
+.tp-caption.brad-heading-white-center{
+  text-align:center;
+ }
+
+.tp-caption.brad-sub-heading-white{
+  color:#eee;
+ }
+.tp-caption.brad-heading-white,
+.tp-caption.brad-heading-white-center{
+  color:#fff;
+ }
+
+.tp-caption.brad-buttons .button{
+  margin:0 7px!important;
+    }
