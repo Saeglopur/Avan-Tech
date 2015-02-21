@@ -98,8 +98,17 @@ function brad_woo_close_div() {
 	echo "</div>";
 }
 function brad_woo_close_double_div() {
+	global $brad_data;
+	if( $brad_data['singlepr_layout'] != 'type2') {
 	echo "</div></div>";
+	}
 }
+
+function brad_woo_close_double_first_div() {
+	echo "</div></div>";
+	
+}
+
 
 //change tab position to be inside summary
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
@@ -108,7 +117,7 @@ add_action('woocommerce_after_single_product_summary', 'woocommerce_output_produ
 
 //wrap single product image in an extra div
 add_action( 'woocommerce_before_single_product_summary', 'brad_woo_images_div', 2);
-add_action( 'woocommerce_before_single_product_summary',  'brad_woo_close_double_div', 20);
+add_action( 'woocommerce_before_single_product_summary',  'brad_woo_close_double_first_div', 20);
 
 function brad_woo_images_div(){
 	echo "<div class='row-fluid element-padding-large'><div class='span6 single-product-main-image'><div class='single-product-wrapper'>";

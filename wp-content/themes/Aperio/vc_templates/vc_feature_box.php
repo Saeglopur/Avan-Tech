@@ -10,6 +10,9 @@
 	  'feature_link' => '',
 	  'title_link' => '',
 	  'icon_link' => '',
+	  'ftarget' => '' ,
+	  'itarget' => '',
+	  'ttarget' => '' ,
 	  'description' =>  '' ,    
 	  'icon' =>  '' , 
 	  'text' => '' ,
@@ -50,13 +53,13 @@
 	 $ex_class = empty($content) ? 'no-content' : '';
 	 
 	 if($feature_link != ''){
-		 $fe_before = '<a href="'. $feature_link .'" >';
+		 $fe_before = '<a href="'. $feature_link .'" target="'.$ftarget.'" >';
 		 $fe_after = '</a>';
 	 }
 	
 	 
 	 if($title_link != '' && empty($feature_link)){
-		 $tl_before = '<a href="'.$title_link.'">';
+		 $tl_before = '<a href="'.$title_link.'" target="'.$ttarget.'">';
 		 $tl_after = '</a>';
 	 }
 	 

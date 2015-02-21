@@ -1,68 +1,5 @@
 <?php
 
-
-/*--------------------------------------------------*/
-/* Single Image 
-/*--------------------------------------------------*/
-add_shortcode('image','brad_image');
-
-function brad_image($atts , $content){
-    $output =  $img_b = $img_a = '';
-    extract(shortcode_atts(array(
-      'image' => '' ,
-      'img_size'  => 'full',
-	  'custom_img_size' => '',
-	  'img_align' => 'none' ,
-	  'img_lightbox' => false,
-	  'icon_lightbox' => '118|ss-air',
-      'img_link_large' => false,
-      'img_link' => '',
-	  'link' => '',
-	  'target' => '',
-      'img_link_target' => '_self',
-      'el_class' => '',
-      'css_animation' => '',
-	  'css_animation_delay' => 0
-       ), $atts));
- 
-	$img_id = preg_replace('/[^\d]/', '', $image);
-
-    $img = wp_get_attachment_image_src( $image, $img_size);
-    if ( $img == NULL ) $img[0] = '<img src="http://placekitten.com/g/400/300" /> <small>'.__('This is image placeholder, edit your page to replace it.', "brad-framework").'</small>';
-
-
-    $link_to = '';
-	
-	if($link != ''){
-		$img_b = '<a href="'.$link.'" target="'.$target.'">';
-		$img_a = '</a>';
-	}
-	
-    else if ($img_lightbox == 'yes') {
-		$icon = brad_icon($icon_lightbox);
-		if($img_link_large == 'yes'){
-            $img_src = wp_get_attachment_image_src( $img_id, 'full');
-            $link_to = '<a href="'.$img_src[0].'" class="icon image-lightbox" rel="prettyPhoto[singleImage'. rand() .']">'.$icon.'</a>';
-		}
-		else if(!empty($img_link)){
-			$link_to = '<a href="'.$img_link.'" class="icon image-lightbox" rel="prettyPhoto[singleImage'. rand() .']">'.$icon.'</a>';
-		}
-   }
-   
-    $css_class =  'single-image img-align-'.$img_align ;
-	
-	if( $css_animation != ''){
-		$css_class .= ' animate-when-visible';
-	}
-	
-    $output .= "\n\t".'<div class="single-image-container img-align-'.$img_align.' '.$el_class.'"><div class="'.$css_class.'" data-animation-delay="'.$css_animation_delay.'" data-animation-effect="'.$css_animation.'">';
-    $output .= "\n\t\t". $img_b . '<img src="' .$img[0] . '" />' . $img_a ;
-	$output .= "\n\t\t\t".$link_to;
-    $output .= "\n\t".'</div></div>';
-    return $output;	
-	
-}
-
 /*---------------------------------------------------*/
 /* Social Share
 /*---------------------------------------------------*/
@@ -117,6 +54,7 @@ function brad_bradslider( $atts , $content = null) {
 	  'category'  =>  '' , 
 	  'type'  => 'gallery',
 	  'effect'   => 'fade',
+	  'post_category' => '' ,
 	  'order'           => 'date',
 	  'orderby'         => 'DESC',
 	  'show_excerpt'  => 'yes' ,
@@ -241,8 +179,8 @@ function brad_bradslider( $atts , $content = null) {
 			  if($categories){
 				  $output .= '<span>';
 	              foreach($categories as $category) {
-		               $output .= $separator.'<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s", 'brad' ), $category->name ) ) . '">'.$category->cat_name.'</a>';
-					   $separator = ',';
+		               $output .= $separator.'<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" , 'brad' ), $category->name ) ) . '">'.$category->cat_name.'</a>';
+					   $separator = ' , ';
 	               }
 				  $output .= '</span>'; 
 			   }
@@ -260,7 +198,7 @@ function brad_bradslider( $atts , $content = null) {
 		 }
 		 
 		 if($show_readmore == 'yes'){
-			 $output .= '<div class="slider-buttons"><a  href="'. $slider_btn_link .'" class="button button_'.$slider_button_style.' button_small ">'. __('Read More','brad').'</a></div>';
+			 $output .= '<div class="slider-buttons"><a  href="'. $slider_btn_link .'" class="button button_'.$slider_button_style.' button_large">'. __('Read More','brad').'</a></div>';
 		 }
 		 
 		 $output .= '</div></div></div></div></div>';
@@ -366,7 +304,7 @@ function brad_bradslider( $atts , $content = null) {
 	   
 	   $slides_count++;
 	 endwhile;
-	 
+	 wp_reset_postdata();
 	 $output .= '</div>';
 	 
 	 if($pagination == 'yes'){
@@ -386,109 +324,7 @@ function brad_bradslider( $atts , $content = null) {
 	 return $output;		  
  }
  
-  
-/*---------------------------------------------------*/
-/* button
-/*---------------------------------------------------*/
-add_shortcode('button','brad_shortcode_button');
-function brad_shortcode_button( $atts , $content = null) {
-	$button_id = rand();	
-	$output = $color = $size = $icon = $target = $href = $title = $position = '';
-    extract(shortcode_atts(array(
-       'style' => 'default',
-	   'align' => '',
-       'size' => '',
-       'icon' => '',
-	   'icon_style' => '',
-	   'icon_align' => 'right',
-	   'icon_ds' => 'hover' ,
-	   'icon_size' => 'normal',
-       'target' => '_self',
-       'href' => '',
-	   'icon_c' => '' ,
-	   'icon_c_hover' => '' ,
-	   'icon_bc' => '' ,
-	   'icon_bgc' => '' ,
-	   'icon_bgc_hover' => '' ,
-       'title' => __('Text on the button', "brad-framework"),
-       'position' => '' ), $atts));
-        $a_class = '';
 
-       if ( $target == 'same' || $target == '_self' ) { 
-	       $target = '';
-	   }
-	  
-	   
-       $target = ( $target != '' ) ? ' target="'.$target.'"' : '';
-       $color = ( $style != '' ) ? 'button_'.$style : '';
-       $size = ( $size != '' && $size != 'default' ) ? ' button_'.$size : ' '.$size;
-       $icon =   $style == 'readmore' ? brad_icon($icon  , $icon_style , '' , true ) : brad_icon($icon  , $icon_style , '' , false );
-	   $ex_class = !empty($icon) ? ' btn-with-icon' : '';
-	   
-	   if( $style == 'readmore'){
-		   $class = 'readmore  icon-align-'.$icon_align . ' visible-'. $icon_ds . $ex_class;
-	   }
-	   else {
-		   $class = 'button button_'.$style.' '.$size.' '.$color.' icon-align-'.$icon_align . ' visible-'. $icon_ds . $ex_class ;
-	   }
-	   
-	   if( $style == 'readmore' && ( $icon_bc != '' || $icon_c != '' || $icon_c_hover != '' || $icon_bgc != '' || $icon_bgc_hover != '' )){
-		   $output .= "<style type='text/css' scoped>";
-		   if( $icon_c_hover != '' || ( $icon_bgc_hover != "" && ( $icon_style == 'style2' || $icon_style == 'style3')) ){
-		       $output .= "#brad_button_{$button_id}:hover .brad-icon{ ";
-			   if( $icon_c_hover != '' ):
-			       $output .= "color:{$icon_c_hover};";
-			   endif;
-			   if( $icon_bgc_hover != "" && ( $icon_style == 'style2' || $icon_style == 'style3')):
-			        $output .= "background-color:{$icon_bgc_hover};border-color:{$icon_bgc_hover};";
-			   endif;
-			$output .= "}";
-	     }
-		   
-		   if($icon_bc != '' || $icon_c != '' || $icon_bgc != '' ):
-		       $output .= "#brad_button_{$button_id} .brad-icon{";
-		       if( $icon_c != ''){
-			       $output .= "color:{$icon_c};";
-		       }
-		       if( $icon_bc != '' && $icon_style == 'style2'){
-			      $output .= "border-color:{$icon_bc};";
-	           }
-		       if( $icon_bgc != '' && $icon_style == 'style3'){
-			       $output .= "background-color:{$icon_bgc};";
-	           }
-		      $output .= "}";
-		   endif;
-		   $output .= "</style>";
-	   }
-	   
-	   if( $align == 'center' ){ $output .= '<p class="sp-container aligncenter">'; }
-	  
-       if ( $href != '' ) {
-           $output .= '<a id="brad_button_'.$button_id.'" class="'.$class.'" title="'.$title.'" href="'.$href.'"'.$target.'>';
-		   if( $icon_align != 'right' ) {
-			   $output .= $icon;
-		   }
-		   $output .= '<span>'.$title.'</span>';
-		   if( $icon_align == 'right'){
-			   $output .= $icon;
-		   }
-		   $output .= '</a>';
-       } 
-       else {
-          $output .= '<span id="brad_button_'.$button_id.'" class="'.$class.'">';
-		   if( $icon_align != 'right' ) {
-			   $output .= $icon;
-		   }
-		   $output .= $title;
-		   if( $icon_align == 'right'){
-			   $output .= $icon;
-		   }
-		   $output .= '</span>';
-	   }
-	   if( $align == 'center'){ $output .= '</p>'; }
-
-       return $output;
-  }
 	
 /*---------------------------------------------------*/
 /* Gap
@@ -503,196 +339,6 @@ add_shortcode('gap', 'brad_gap');
 		$output .= '<div class="gap" style="height:'.$height.'px"></div>';
 		return $output;
 	}
-
-
-
-/*---------------------------------------------------*/
-/* Pricing Table
-/*---------------------------------------------------*/
-
-add_shortcode('pricing_table', 'brad_pricing_table');
-	function brad_pricing_table($atts, $content = null) {
-		$output = '';
-		extract(shortcode_atts(array(
-		   'columns' => '3'
-         ), $atts));
-		$output .= "\n\t".'<div class="pricing-table row-fluid columns-'.$columns.'">';
-		$output .= "\n\t\t".do_shortcode($content);
-		$output .= "\n\t".'</div>';
-		return $output;
-	}
-
-
-// Pricing Column
-add_shortcode('pricing_column', 'brad_pricing_column');
-	function brad_pricing_column($atts, $content = null) {
-		$output = '';
-		static $pricing_cid  = 1 ;
-		extract(shortcode_atts(array(
-		   'title' => '' ,
-		   'icon' => '' ,
-		   'title_bgcolor' => '',
-		   'title_textcolor' => '',
-		   'feature_bg_color' => '',
-		   'featured' => 'no' ,
-		   'feature_color' => '', 
-		   'title_bc' => '',
-       	   'price' => '10', 
-		   'price_top_left' => '$',
-		   'price_bottom_right' => '/Month',
-		   'price_subtext' => '' ,
-		   'button_text' => 'Sign Up' ,
-		   'button_url' => '' , 
-		   'button_icon' => ''
-    ), $atts));
-	
-	 
-	  if($icon != '' ){ $icon = '<span class="icon">'.brad_icon($icon , '' , '' , false).'</span>'; }
-	  if($button_icon != '' ){ $button_icon = '<i class="'.$button_icon.'"></i>'; }
-	  $style = $style1 = '';
-	  if($title_bgcolor != '') { $style .= 'background-color:'.$title_bgcolor.';'; }
-	  if($title_textcolor != '') { $style .= 'color:'.$title_textcolor.';'; }
-	  if( $title_bc != '') { $style .= "border-top-color:{$title_bc}";}
-	  $style = ' style="'.$style.'"';
-	  if($feature_bg_color != '' || $feature_color != ''){
-		  $style1 .= "background-color:{$feature_bg_color}; color:{$feature_color}";
-	  }
-	  
-	  $output .= "\n\t".'<div class="span"><div id="pricing_column_'.$pricing_cid.'" class="pricing-column featured='.$featured.'" style="'.$style1.'">';
-	  $output .= "\n\t\t".'<div class="title-box">' .$icon. '<h2>' .$title. '</h2></div>';
-	  $output .= "\n\t\t\t".'<div class="pricing-box"><div><span class="price"><span class="dollor">'.$price_top_left.'</span>'.$price.'</span><span class="month">'.$price_bottom_right.'</span></div><div class="price-info">'.$price_subtext.'</div></div>'; 
-	  
-	  $output .= "\n\t\t\t\t".'<ul class="feature-list">' .do_shortcode($content). '</ul>';
-      $output .= "\n\t\t\t\t\t".'<div class="pricing-signup"><a class="button button_alternateprimary button_small" href="'.$button_url.'">'.$button_icon.$button_text.'</a></div>';
-	  $output .= "\n\t".'</div></div>';
-	  $pricing_cid++;
-	  return $output;
-	}
-
-// Pricing Row
-add_shortcode('pricing_feature', 'brad_pricing_feature');
-	function brad_pricing_feature($atts, $content = null) {
-		$str = '';
-		$str .= "\n\t".'<li class="included-text">';
-		$str .= "\n\t\t".do_shortcode($content);
-		$str .= "\n\t".'</li>';
-		return $str;
-	}
-	
-	
-/*------------------------------------------------------*/
-/* Compare Table
-/*------------------------------------------------------*/
-
-add_shortcode('compare_table','brad_compare_table');
-function brad_compare_table($atts, $content = null) {
-	$output = '';
-	static $compare_table_id = 1;
-    extract(shortcode_atts(array(
-        'title'      => '' ,
-		'title_bg' => '' ,
-		'title_color' => '' ,
-		'element'    => '3',
-		'e1_title'      => '' ,
-		'e1_icon'      => '' ,
-		'e2_title'      => '' ,
-		'e2_icon'      => '' ,
-		'e3_title'      => '' ,
-		'e3_icon'      => '' ,
-		'e4_title'      => '' ,
-		'e4_icon'      => '' ,
-		'e5_title'      => '' ,
-		'e5_icon'      => '' ,
-		'sign_color' => '' ,
-		'c_sign'      => 'dot' ,
-		'i_sign'      => 'none'
-    ), $atts));
-	
-	if( $sign_color != '' || $title_bg != '' || $title_color != '' ):
-	
-	   $output .= "<style type='text/css' scoped>";
-	   if( $title_bg != ''){
-		   $output .= "#compare_table_{$compare_table_id}.compare-table .table-heading{background-color:{$title_bg};}";
-	   }
-	   if( $title_color != ''){
-		   $output .= "#compare_table_{$compare_table_id}.compare-table .table-heading-title h4,#compare_table_{$compare_table_id}.compare-table .table-element h4,#compare_table_{$compare_table_id}.compare-table .table-element .brad-icon{color:{$title_color};}";
-	   }
-	   if( $sign_color != ''){
-		   $output .= "#compare_table_{$compare_table_id}.compare-table .table-feature .feature-element span{color:{$sign_color};}";
-	   }
-	   $output .= "</style>";
-	   
-	endif;
-	
-	$output .= '<div id="compare_table_'.$compare_table_id.'" class="compare-table elements-'. $element .' included-sign-'.$c_sign.' sign-'.$i_sign.' clearfix"><div class="table-heading clearfix"><div class="table-left table-heading-title"><h4>'.$title.'</h4></div><div class="table-elements table-right">';
-	if($e1_title != ''){
-		$output .= '<div class="table-element">';
-		$output .= brad_icon($e1_icon);
-		$output .= '<h4>'.$e1_title.'</h4>';
-		$output .= '</div>';
-	}
-	
-	if($e2_title != ''){
-		$output .= '<div class="table-element">';
-		$output .= brad_icon($e2_icon);
-		$output .= '<h4>'.$e2_title.'</h4>';
-		$output .= '</div>';
-	}
-	
-	if($e3_title != ''){
-		$output .= '<div class="table-element">';
-		$output .= brad_icon($e3_icon);
-		$output .= '<h4>'.$e3_title.'</h4>';
-		$output .= '</div>';
-	}
-	
-	if($e4_title != ''){
-		$output .= '<div class="table-element">';
-		$output .= brad_icon($e4_icon);
-		$output .= '<h4>'.$e4_title.'</h4>';
-		$output .= '</div>';
-	}
-	
-	if($e5_title != ''){
-		$output .= '<div class="table-element">';
-		$output .= brad_icon($e5_icon);
-		$output .= '<h4>'.$e5_title.'</h4>';
-		$output .= '</div>';
-	}
-	
-	$output .= '</div></div>';
-	$output .= '<div class="table-features">';
-	$output .= do_shortcode($content);
-	$output .= '</div></div>';
-	$compare_table_id++;
-    return $output;
-}
-
-
-add_shortcode('compare_feature','brad_compare_feature');
-function brad_compare_feature($atts, $content = null) {
-	$output = '';
-	extract(shortcode_atts(array(
-        'title'      => '' ,
-		'e1_included' => true ,
-		'e2_included' => false ,
-		'e3_included' => false ,
-		'e4_included' => false ,
-		'e5_included' => false ,
-    ), $atts));
-	
-	$f1_in = $e1_included == "yes" ? '<span class="feature-included-yes">&nbsp;</span>' : '<span class="feature-included-no"></span>';
-	$f2_in = $e2_included == "yes" ? '<span class="feature-included-yes">&nbsp;</span>' : '<span class="feature-included-no"></span>';
-	$f3_in = $e3_included == "yes" ? '<span class="feature-included-yes">&nbsp;</span>' : '<span class="feature-included-no"></span>';
-	$f4_in = $e4_included == "yes" ? '<span class="feature-included-yes">&nbsp;</span>' : '<span class="feature-included-no"></span>';
-	$f5_in = $e5_included == "yes" ? '<span class="feature-included-yes">&nbsp;</span>' : '<span class="feature-included-no"></span>';
-	
-	
-	$output .= "\n\t".'<div class="table-feature clearfix"><div class="table-left table-feature-title"><p>'.$title.'</p></div><div class="table-right table-feature-elements"><div class="table-element feature-element">'.$f1_in.'</div><div class="table-element feature-element">'.$f2_in.'</div><div class="table-element  feature-element">'.$f3_in.'</div><div class="table-element  feature-element">'.$f4_in.'</div><div class="table-element  feature-element">'.$f5_in.'</div></div></div>';
-	
-	return $output;
-}
-
 
 
 
@@ -755,11 +401,23 @@ add_shortcode('item','brad_item');
 add_shortcode('dropcap','brad_dropcap');
 function brad_dropcap($atts, $content = null) {
     extract(shortcode_atts(array(
-        'style'      =>  'default' ,
-		'color' => 'default' 
+        'style'      =>  'disable' ,
+		'color' => '',
+		'bc' => '' ,
+		'bw' => '0',
+		'bgc' => '',
+		'br' => '9999px' 
     ), $atts));
+	$out = $dstyle = '';
 	
-	$out = "<span class='dropcap ". $style ." color-".$color."'>" .$content. "</span>";
+	
+	$dstyle .= "color:{$color};";
+	if($style == 'enable') {  
+	$br = preg_match('/%/i',$br) ||  preg_match('/px/i',$br)  ? $br : intval($br).'px';
+	$bw = preg_match('/%/i',$bw) ||  preg_match('/px/i',$bw)  ? $bw : intval($bw).'px';
+	$dstyle .= "border:{$bw} solid {$bc}; background-color:{$bgc};border-radius:{$br};-webkit-border-radius:{$br};-moz-border-radius:{$br};";}
+	
+	$out = "<span class='dropcap container-". $style ."' style='".$dstyle."'>" .$content. "</span>";
     return $out;
 }
 
@@ -795,72 +453,6 @@ function brad_video($atts) {
 	if (!empty($id)){
 		return $return;
 	}
-}
-
-
-
-/*-----------------------------------------------------------------------------*/
-/* Icons
-/*-----------------------------------------------------------------------------*/
-
-add_shortcode('icon','brad_sh_icon');
-
-function brad_sh_icon( $atts, $content = null ) {
-	static $brad_icon_id = 1 ;
-	$out = $li_after = $li_before = '';
-	
-	extract(shortcode_atts(array(
-       	'icon'      => '' ,'size' => 'small' ,'style' => 'style1' , 'align' => '' , 'color' => '' , 'color_hover' => '' ,'bg_color' => '', 'bg_opacity' => '','bg_color_hover' => '', 'bg_opacity_hover' => '','border_color' =>'', 'border_opacity' => '' , 'border_width' => '1' , 'lb' =>'no' , 'link' => '' , 'enable_crease' => 'no' 
-    ), $atts));
-	
-	if( $link != ''){
-		$li_before = '<a href="'.$link.'"';
-		if($lb == 'yes') $li_before .= ' rel="prettyPhoto[icon'. rand() .']"';
-		$li_before .= '>';
-		$li_after .= '</a>';
-	}
-	
-	if( $color != '' || $color_hover != '' || $bg_color != '' || $bg_color_hover != '' || $border_color != '' ){
-		$out .= "<style type='text/css' scoped>#brad_icon_{$brad_icon_id}{";
-		if( $color != ''){
-			$out .= "color:{$color};";
-		}
-		if( $bg_color != '' && $style == 'style3'){
-			$rgb = brad_hex2rgb($bg_color);
-			$rgba = "rgba({$rgb[0]},{$rgb[1]},{$rgb[2]},{$bg_opacity})";
-			$out .= "background-color:{$bg_color};background-color:{$rgba};";
-		}
-		if( $border_color != '' && $style == 'style2'){
-			$rgb = brad_hex2rgb($border_color);
-			$rgba = "rgba({$rgb[0]},{$rgb[1]},{$rgb[2]},{$border_opacity})";
-			$out .= 'border-width:'. intval($border_width) .'px;';
-			$out .= "border-color:{$border_color};border-color:{$rgba};";
-		}
-		$out .= "}";
-		
-		if( $bg_color_hover != '' || $color_hover != ''){
-			$out .= "#brad_icon_{$brad_icon_id}:hover{";
-			if($bg_color_hover != '' || ( $style == 'style2' || $style == 'style3') ){
-				$rgb = brad_hex2rgb($bg_color_hover);
-			    $rgba = "rgba({$rgb[0]},{$rgb[1]},{$rgb[2]},{$bg_opacity_hover})";
-				$out .= "background-color:{$bg_color_hover};background-color:{$rgba};border-color:{$bg_color_hover};border-color:{$rgba};";
-			}
-			if($color_hover){
-				$out .= "color:{$color_hover};";
-			}
-			$out .= "}";
-		}
-		$out .= "</style>";
-	}
-    $class = ' enable-crease-'.$enable_crease.' '.$size.'-size '.$style ;
-	if( $align == 'center'){ 
-	     $out .= "\n\t".'<p class="sp-container textcenter">'. $li_before . brad_icon($icon,$class,"brad_icon_{$brad_icon_id}") . $li_after.'</p>';
-	}
-	else{
-	   $out .= "\n\t". $li_before.brad_icon($icon,$class,"brad_icon_{$brad_icon_id}").$li_after;
-	}
-	$brad_icon_id++;
-    return $out;
 }
 
 
@@ -934,52 +526,6 @@ function brad_tooltip( $atts, $content = null){
 return '<span class="tooltips" data-align="'.$align.'"><a href="#"  title="'.$text.'" rel="tooltip" >'. do_shortcode($content) . '</a></span>';
 
 }
-
-/*-----------------------------------------------------------------------------------*/
-/* Heading */
-/*-----------------------------------------------------------------------------------*/
-function brad_heading( $atts, $content = null){
-	extract(shortcode_atts(array('type' => 'h1' ,'style'=>'' , 'text_transform' => 'default' , 'align' => 'left' , 'title' => 'Your title here' , 'margin_bottom' => '20px'),$atts));
-	
-	$output = "\n\t".'<'.$type.' class="title text'.$align.' '.$style.' text'.$text_transform.'" style="margin-bottom:'.$margin_bottom.'px">';
-	$output .= "\n\t\t".'<span>'.$title.'</span>';
-	$output .= "\n\t".'</'.$type.'>'."\n";
-	return $output;
-	
-}
-
-add_shortcode('heading','brad_heading');
-
-/*-----------------------------------------------------------------------------------*/
-/* Separator */
-/*-----------------------------------------------------------------------------------*/
-
-function brad_separator( $atts, $content = null){
-    $output = '';
-    extract(shortcode_atts(array(
-	    'type'  => 'large' , 
-		'style' => 'normal' ,
-		'align' => 'center' , 
-		'color' => 'light',
-		'icon' => '' ,
-		'margin_top' => 2 , 
-		'margin_bottom' => 25 ),
-		$atts));
-
-	$css_class = 'hr border-'.$type.' '.$style.'-border align'.$align.' hr-border-'.$color;
-	
-	if($icon != '' ){
-		$css_class .= ' hr-with-icon';
-	}
-	
-	$style = "margin-top:{$margin_top}px;margin-bottom:{$margin_bottom}px;";
-				
-	$output .= '<div  class="'.$css_class.'" style="'.$style.'"><span>'.brad_icon($icon,'','',false).'</span></div>';
-	return $output;
-	
-  }	
-add_shortcode('separator','brad_separator');
-
 
 
 /*---------------------------------------------------*/

@@ -146,332 +146,6 @@ $brad_shortcodes['video'] = array(
 );
 
 
-
-
-// Pricing Table
-$brad_shortcodes['pricing-table'] = array(
-     'popup_title' =>  __('Pricing Table', 'brad_framework'),
-	 'params' => array(		
-	 'columns' => array(
-			'type' => 'select',
-			'label' => __('Pricing Table Columns ?', 'brad_framework'),
-			'desc' => '',
-			'options' => array(
-				'3' => 'Three Columns',
-				'4' => 'Four Columns '
-				),
-			'std' => '3'	)),
-	'shortcode' => '[pricing_table columns="{{columns}}" ] {{child_shortcode}}[/pricing_table]',
-	'no_preview' => true,
-	
-	// can be cloned and re-arranged
-	'child_shortcode' => array(
-		'params' => array(
-		
-	    'title' => array(
-				'type' => 'text',
-				'label' => __('Pricing Column Title', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),
-			
-		'title-bgcolor' => array(
-				'type' => 'colorpicker',
-				'label' => __('Pricing Title Background Color', 'brad_framework'),
-				'desc' => 'If this field is empty then default background color will be used',
-				'std' => ''
-			),	
-			
-		'title-textcolor' => array(
-				'type' => 'colorpicker',
-				'label' => __('Pricing Title Color', 'brad_framework'),
-				'desc' => 'If this field is empty then default color will be used',
-				'std' => ''
-			),
-			
-		'title-bc' => array(
-				'type' => 'colorpicker',
-				'label' => __('Pricing Title Border Color', 'brad_framework'),
-				'std' => ''
-			),	
-			
-		'feature-bg-color' => array(
-				'type' => 'colorpicker',
-				'label' => __('Pricing Feature Item Bg Color', 'brad_framework'),
-				'std' => ''
-			),
-			
-		'feature-color' => array(
-				'type' => 'colorpicker',
-				'label' => __('Pricing Feature Item Text Color', 'brad_framework'),
-				'std' => ''
-			),					
-			
-		'icon' => array(
-				'type' => 'iconpicker',
-				'label' => __('Pricing Column Title Icon', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),	
-			
-		'price' => array(
-				'type' => 'text',
-				'label' => __('Pricing Amount', 'brad_framework'),
-				'desc' => '',
-				'std' => '10'
-			),	
-				
-		'price-top-left' => array(
-				'type' => 'text',
-				'label' => __('Pricing Amount Top Left Text', 'brad_framework'),
-				'desc' => '',
-				'std' => '$'
-			),	
-			
-			
-		'price-bottom-right' => array(
-				'type' => 'text',
-				'label' => __('Pricing Amount Bottom Right Text', 'brad_framework'),
-				'desc' => '',
-				'std' => '/ Month'
-			),	
-			
-		'price-subtext' => array(
-				'type' => 'text',
-				'label' => __('Pricing Description', 'brad_framework'),
-				'desc' => __('A small Description about your price that will be shown at bottom of pricing columns','brad-framework'),
-				'std' => ''
-			),	
-						
-		'button-icon' => array(
-				'type' => 'iconpicker',
-				'label' => __('Pricing Button Icon ', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),	
-			
-			
-		'button-text' => array(
-				'type' => 'text',
-				'label' => __('Pricing Button Text', 'brad_framework'),
-				'desc' => '',
-				'std' => 'Sign Up'
-			),
-			
-			
-		'button-url' => array(
-				'type' => 'text',
-				'label' => __('Pricing Button Url', 'brad_framework'),
-				'desc' => 'Do\'t Forget to include http:// ',
-				'std' => ''
-			)
-			,		
-			
-		'content' => array(
-				'std' => '',
-				'type' => 'textarea',
-				'label' => __('Pricing Features', 'brad_framework'),
-				'desc' => __('Enter The  Pricing Features in "[pricing_feature]Feature 1[/pricing_feature] " format.', 'brad_framework'),
-				'std' => '[pricing_feature]Feature 1[/pricing_feature][pricing_feature]Feature 2[/pricing_feature]'
-			)	
-		),
-		'shortcode' => '[pricing_column   title="{{title}}" icon="{{icon}}"  title_bgcolor ="{{title-bgcolor}}" title_textcolor="{{title-textcolor}}"  price="{{price}}" title_bc="{{title-bc}}" feature_bg_color="{{feature-bg-color}}" feature_color="{{feature-color}}" price_top_left="{{price-top-left}}" price_bottom_right="{{price-bottom-right}}"  button_text="{{button-text}}" button_url = "{{button-url}}" price_subtext="{{price-subtext}}" button_icon="{{button-icon}}"]{{content}} [/pricing_column] ',
-		'clone_button' => __('Add Another Pricing Column', 'brad_framework'),
-	)
-);
-
-
-
-
-
-
-// Pricing Table
-$brad_shortcodes['compare-table'] = array(
-     'popup_title' =>  __('Compare Table', 'brad_framework'),
-	 'params' => array(		
-	 'elements' => array(
-			'type' => 'select',
-			'label' => __('Compare Table Elements ?', 'brad_framework'),
-			'desc' => 'Select the number of elements you want to compare ( Max 4 )',
-			'options' => array( '1' => 'one' , '2' => 'Two' , '3' => 'Three' , '4' => 'Four' ),
-			'std' => '3' ),
-	
-	 'title' => array(
-				'type' => 'text',
-				'label' => __('Compare Table Heading Title', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),	
-			
-     'title-bg' => array(
-				'type' => 'colorpicker',
-				'label' => __('Heading Background Color', 'brad_framework'),
-				'desc' => 'Leave blank for default',
-				'std' => ''
-			),	
-			
-	'title-color' => array(
-				'type' => 'colorpicker',
-				'label' => __('Heading Text Color', 'brad_framework'),
-				'desc' => 'Leave blank for default',
-				'std' => ''
-			),			
-						
-	'e1-title' => array(
-				'type' => 'text',
-				'label' => __('First Element Title', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),
-			
-	 'e1-icon' => array(
-				'type' => 'iconpicker',
-				'label' => __('First Element Icon', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),	
-			
-	'e2-title' => array(
-				'type' => 'text',
-				'label' => __('Second Element Title', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),
-			
-	 'e2-icon' => array(
-				'type' => 'iconpicker',
-				'label' => __('Second Element Icon', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),				
-				
-	'e3-title' => array(
-				'type' => 'text',
-				'label' => __('Third Element Title', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),
-			
-	 'e3-icon' => array(
-				'type' => 'iconpicker',
-				'label' => __('Third Element Icon', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),	
-			
-	'e4-title' => array(
-				'type' => 'text',
-				'label' => __('Fourth Element Title', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),
-			
-	 'e4-icon' => array(
-				'type' => 'iconpicker',
-				'label' => __('Fourth Element Icon', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			)	,
-			
-	
-	 'e5-title' => array(
-				'type' => 'text',
-				'label' => __('Fifth Element Title', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),
-			
-	 'e5-icon' => array(
-				'type' => 'iconpicker',
-				'label' => __('Fifth Element Icon', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			)	,		
-			
-	'c-sign' => array(
-			'type' => 'select',
-			'label' => __('Correct Sign ?', 'brad_framework'),
-			'desc' => 'This sign will be shown if the feaature is included in current element',
-			'options' => array( 'correct' => 'Correct Sign' , 'dot' => 'Dot Sign' , 'correct-with-circle' => 'correct Sign with Circle'),
-			'std' => 'dot' ) ,
-			
-	'i-sign' => array(
-			'type' => 'select',
-			'label' => __('InCorrect Sign ?', 'brad_framework'),
-			'desc' => 'This sign will be shown if the feaature is not included in current element',
-			'options' => array( 'none' => 'empty ( Nothing )' , 'hash' => 'Hash sign' , 'remove' => 'Remove Sign' , 'remove-with-circle' => 'Remove sign with Circle'),
-			'std' => 'none' )	,
-			
-	'sign-color' => array(
-				'type' => 'colorpicker',
-				'label' => __('signs Color', 'brad_framework'),
-				'desc' => 'Leave blank for default',
-				'std' => ''
-			),																						
-	),
-	'shortcode' => '[compare_table element="{{elements}}" title="{{title}}" e1_icon="{{e1-icon}}" e1_title="{{e1-title}}" e2_icon="{{e2-icon}}" e2_title="{{e2-title}}" e3_icon="{{e3-icon}}" e3_title="{{e3-title}}" e4_icon="{{e4-icon}}" e4_title="{{e4-title}}" e5_icon="{{e5-icon}}" e5_title="{{e5-title}}" c_sign="{{c-sign}}" i_sign="{{i-sign}}" title_bg="{{title-bg}}" title_color="{{title-color}}" sign-color="{{sign-color}}"] {{child_shortcode}}[/compare_table]',
-	'no_preview' => true,
-	
-	// can be cloned and re-arranged
-	'child_shortcode' => array(
-		'params' => array(
-		
-	    'title' => array(
-				'type' => 'text',
-				'label' => __('Feature Title', 'brad_framework'),
-				'desc' => '',
-				'std' => ''
-			),
-		
-		'e1-included' => array(
-		        'type' => 'select',
-			    'options' => array( 'yes' => 'yes' , 'no' => 'no'),
-			    'std' => 'yes' ,
-				'desc' => __('Is the current feature in included in element 1 ( If yes then this will show correct Sign otherwise incorrect Sign)','brad-framework'),
-				'label' => __('Featured in Element 1','brad-framework')
-				),
-		
-		'e2-included' => array(
-		        'type' => 'select',
-			    'options' => array( 'yes' => 'yes' , 'no' => 'no'),
-			    'std' => 'no' ,
-				'desc' => '',
-				'label' => __('Featured in Element 2','brad-framework')
-				),
-				
-		'e3-included' => array(
-		        'type' => 'select',
-			    'options' => array( 'yes' => 'yes' , 'no' => 'no'),
-			    'std' => 'no' ,
-				'desc' => '',
-				'label' => __('Featured in Element 3','brad-framework')
-				),
-				
-		'e4-included' => array(
-		        'type' => 'select',
-			    'options' => array( 'yes' => 'yes' , 'no' => 'no'),
-			    'std' => 'no' ,
-				'desc' => '',
-				'label' => __('Featured in Element 4','brad-framework')
-				),
-				
-		'e5-included' => array(
-		        'type' => 'select',
-			    'options' => array( 'yes' => 'yes' , 'no' => 'no'),
-			    'std' => 'no' ,
-				'desc' => '',
-				'label' => __('Featured in Element 5','brad-framework')
-				),									
-		
-		),
-		'shortcode' => '[compare_feature   title="{{title}}" e1_included="{{e1-included}}"  e2_included="{{e2-included}}"  e3_included="{{e3-included}}"  e4_included="{{e4-included}}"  e5_included="{{e5-included}}"] ',
-		'clone_button' => __('Add Another Feature', 'brad_framework'),
-	)
-);
-
-
-
-
 // Drop Cap
 $brad_shortcodes['dropcap'] = array(
         'popup_title' => 'Dropcap',
@@ -479,26 +153,49 @@ $brad_shortcodes['dropcap'] = array(
           'style' => array(
 				'std' => '',
 				'type' => 'select',
-				'label' => __('Drop Cap Container Style', 'brad_framework'),
+				'label' => __('Drop Cap Container', 'brad_framework'),
 				'desc' => '',
 				'options'=>array(
-				  ''   => ' No container' ,
-				  'style1' => 'Box Container',
-				  'style2' => 'Rounded Container',
-				  'style3' => 'With Stroke',
-				  'style4' => 'With Stroke Rounded')
+				  'disable'   => 'Disable' ,
+				  'enable' => 'Enable')
 			),
+			
+		'bgc' => array(
+				'std' => '',
+				'desc'=> '',
+				'type' => 'colorpicker',
+				'label' => __('Drop Cap Container Background Color', 'brad_framework')
+			),	
+			
+	    'bw' => array(
+				'std' => '0',
+				'type' => 'text',
+				'desc'=> '',
+				'label' => __('Drop Cap container Border Width', 'brad_framework')
+			),		
+			
+		'bc' => array(
+				'std' => '',
+				'desc'=> '',
+				'type' => 'colorpicker',
+				'label' => __('Drop Cap Container Border Color', 'brad_framework')
+			),	
 			
 		'color' => array(
 				'std' => '',
-				'type' => 'select',
-				'label' => __('Drop Cap Container Background or Border Color', 'brad_framework'),
-				'desc' => '',
-				'options' => array(
-				             '' => 'Default' ,
-				      'primary' => 'Primary Color'
-				   )
-			),	
+				'desc'=> '',
+				'type' => 'colorpicker',
+				'label' => __('Drop Cap Color', 'brad_framework')
+			),
+			
+	    'br' => array(
+				'std' => '9999px',
+				'type' => 'text',
+				'desc'=> '',
+				'label' => __('Drop Cap container Border Radius', 'brad_framework')
+			),
+			
+								
 			
 		'content' => array(
 			'std' => '',
@@ -508,7 +205,7 @@ $brad_shortcodes['dropcap'] = array(
 	)
 
      ),
-'shortcode' => '[dropcap style="{{style}}" color="{{color}}"]{{content}}[/dropcap]',
+'shortcode' => '[dropcap style="{{style}}" color="{{color}}" br="{{br}}" bw="{{bw}}" bc="{{bc}}" bgc="{{bgc}}"]{{content}}[/dropcap]',
 );
 
 
@@ -696,6 +393,7 @@ $brad_shortcodes['icon'] = array(
 	     'type' => 'checkbox',
 		 'checkbox_text' => 'yes',
 		 'std' => '',
+		 'desc' => '' ,
 		 'label' => __('Open Above link in lightbox? ' , 'brad-framework')
 		 )
 	,
@@ -784,7 +482,7 @@ $brad_shortcodes['icon'] = array(
 		
 	 ) ,
 		
-	'shortcode' => '[icon icon="{{icon}}" size="{{size}}" align="{{align}}" style="{{style}}" color="{{color}}" color_hover="{{color-hover}}" bg_color="{{bg-color}}" bg_opacity="{{bg-opacity}}" bg_opacity_hover="{{bg-opacity-hover}}" bg_color_hover="{{bg-color-hover}}" border_color="{{border-color}}" border_opacity="{{border-opacity}}" link="{{link}}" lb="{{lb}}" border_width="{{border-width}}" enable_crease="{{enable-crease}}"]',
+	'shortcode' => '[vc_icon icon="{{icon}}" size="{{size}}" align="{{align}}" style="{{style}}" color="{{color}}" color_hover="{{color-hover}}" bg_color="{{bg-color}}" bg_opacity="{{bg-opacity}}" bg_opacity_hover="{{bg-opacity-hover}}" bg_color_hover="{{bg-color-hover}}" border_color="{{border-color}}" border_opacity="{{border-opacity}}" link="{{link}}" lb="{{lb}}" border_width="{{border-width}}" enable_crease="{{enable-crease}}"]',
 );
 
 
@@ -800,19 +498,21 @@ $brad_shortcodes['separator'] = array(
 			"std" => "" ,
 	        "options" => array( "large" => "100% Border" , "medium" => "Medium Border" , "small" => "Small Border" , "tiny" => "Extra Small Border" )
 	       ),
+	
+	
 		   
-   "style" => array(
-          "type" => "select",
-		  "desc" => "" ,
-		  "std" => "" ,
-          "label" => __( "Border Style" ,"brad-framework"),
-	      "options" => array( "normal" => "Normal Border"  , "double" => "Thick Border"  )
-	),
+  "dh" =>  array(
+      "type" => "select",
+      "label" => __( "Border Thickness" ,"brad-framework"),
+      "desc" => '' ,
+	  'std' => '',
+	  "options" => array('2' => "2px" , '1' => "1px", '3' => "3px" , '4' => '4px' , '5' => '4px' )
+   ),
 	
   "align" => array(
       "type" => "select",
 	  "desc" => "" ,
-	  "std" => "" ,
+	  "std" => "center" ,
       "label" => __('Separator Align', 'brad-framework'),
 	  "options" => array(
 		"left" => __("Align Left", 'brad-framework')  ,
@@ -820,6 +520,25 @@ $brad_shortcodes['separator'] = array(
 		"right" => __("Align Right", 'brad-framework')  ,
 		 )
 	),
+	
+  "color" => array(
+      "type" => "select",
+      "label" => __( "Border Color" ,"brad-framework"),
+      "desc" => "",
+	  'std' => '',
+	  "options" => array(
+	     "dark"  => "Dark",
+	    "light" =>  "Light",
+		"primary" => "Primary" )
+	),
+		
+ "icon" => array(
+      "type" => "iconpicker",
+      "label" => __( "Icon" ,"brad-framework"),
+      "desc" => "" ,
+	  "std" => ""
+	),
+			
 	
   "margin-top" => array(
       "type" => "text",
@@ -835,7 +554,7 @@ $brad_shortcodes['separator'] = array(
 	  "desc" => __('Default Bottom Margin in "px"','brad-framework')
 	)
   ),
- 'shortcode' => '[separator type="{{type}}" style="{{style}}" align="{{align}}"margin-bottom="{{margin-bottom}}" margin_top="{{margin-top}}"]'
+ 'shortcode' => '[vc_separator type="{{type}}" dh="{{dh}}" color="{{color}}" icon="{{icon}}" align="{{align}}" margin-bottom="{{margin-bottom}}" margin_top="{{margin-top}}"]'
  );  	
   
 
@@ -851,6 +570,13 @@ $brad_shortcodes['heading'] = array(
       "label" => __("Title","brad-framework"),
 	  "std" =>  'Your Title Here' ,
 	  "desc" => ""
+	),
+	
+	"icon" => array(
+      "type" => "iconpicker",
+      "label" => __( "Icon" ,"brad-framework"),
+      "desc" => "" ,
+	  "std" => ""
 	),
 	
    "type" => array(
@@ -873,36 +599,91 @@ $brad_shortcodes['heading'] = array(
       "type" => "select",
       "label" => __( "Heading Style" ,"brad-framework"),
 	  "options" => array(
-	    "" => "No Style"  ,
-	    "style1" => "Style 1" ,
-		"style2" => "Style 2" ,
-		"style3" => "Style 3" ),
+	    "default" => __("Simple Heading" ,"brad-framework") ,
+	   "style1" =>  __("With Divider at the bottom","brad-framework") ,
+	   "style2" => 	__("With Divider in center","brad-framework") ,
+	   "style3" => __("Boxed Border with Divider","brad-framework")  ,
+	   "style4" => __("Boxed Border","brad-framework")
+	 ),
 	  "desc" => "",
 	  "std" => ""	 
 	),
 	
-  "text-transform" => array (
+  "bw" => array(
       "type" => "select",
-	  "desc" => "",
-	  "std" => "default",
-      "label" => __( "Text Transform" ,"brad-framework"),
+      "label" => __( "Border Width" ,"brad-framework"),
+	  "std" => "",
+	  "desc" => "" ,
+	  "options" => array( '2'  => "2px"  , '1'  => "1px" , '3'  => "3px"  , '4'  => '4px' , '5'  => '5px'  )
+	  ),
+	  
+  "dh" => array(
+      "type" => "select",
+      "label" => __( "Divider Height" ,"brad-framework"),
+	  "std" => "",
+	  "desc" => "" ,
+	  "options" => array( '2'  => "2px"  , '1'  => "1px" , '3'  => "3px"  , '4'  => '4px' , '5'  => '5px'  )
+	  ),	  
+	
+	"divider_width" => array(
+      "type" => "select",
+      "label" => __( "Divider Width" ,"brad-framework"),
+      "desc" => "",
+	  "std" => "" ,
 	  "options" => array(
-	    "default" => "Default",
-		"uppercase" => "Uppercase"  ,
-		"lowercase" => "lowercase" )
+	    "default" => __("Small (Default)","brad-framework") ,
+		"parent" => __("Match With Text Length","brad-framework")  ,
+		"full" => __("Full","brad-framework")  ,
+		"medium" => __("Medium","brad-framework") )
 	),
+	  
+	"divider_color" => array(
+      "type" => "select",
+      "label" => __( "Divider Color" ,"brad-framework"),
+      "desc" => '',
+	  'std' => '',
+	  "options" => array(
+	    "dark" => __("Dark","brad-framework") ,
+		"light" =>  __("Light","brad-framework") ,
+		"primary" => __("Primary","brad-framework")  )
+	),
+	
+	"bc" => array(
+      "type" => "select",
+      "label" => __( "Border Color" ,"brad-framework"),
+      "desc" => '',
+	  'std' => '',
+	  "options" => array(
+	    "dark" => __("Dark","brad-framework")  ,
+		"light" => __("Light","brad-framework")  ,
+		"primary" => __("Primary","brad-framework") )
+	),
+	
+	
+
+	 "color" => array(
+      "type" => "select",
+      "label" => __( "Color" ,"brad-framework"),
+      "desc" => '',
+	  'std' => '',
+	  "options" => array(
+	    "default" => "Default" ,
+		"primary" => "Primary Color"  )
+	),
+	
 	 
 	"align" =>  array(
       "type" => "select",
       "label" => __('Heading Align', 'brad-framework'),
 	  "options" => array(
-		"left" =>  __("Align Left"),
+		"left" =>  __("Align Left", 'brad-framework'),
 	  	"center" => __("Align Center", 'brad-framework') ,
 		"right" => __("Align Right", 'brad-framework'),
 		 ),
 	 "desc" => "",
 	 "std" => "left"	 
 	),
+	
    
 	"margin-bottom" => array(
       "type" => "text",
@@ -911,7 +692,7 @@ $brad_shortcodes['heading'] = array(
 	  "desc" => __("Default Margin From Bottom in px","brad-framework")
 	)	
   ),
-  "shortcode" => '[heading title="{{title}}" type="{{type}}" style="{{style}}" text_transform="{{text-transform}}" align="{{align}}" margin_bottom="{{margin-bottom}}"]' 
+  "shortcode" => '[vc_heading title="{{title}}" icon="{{icon}}" bw="{{bw}}" dh="{{dh}}" divider_width="{{divider_width}}" divider_color="{{divider_color}}" bc="{{bc}}" color="{{color}}" type="{{type}}" style="{{style}}" align="{{align}}" margin_bottom="{{margin-bottom}}"]' 
 );
  
   
@@ -989,6 +770,7 @@ $brad_shortcodes['icons'] = array(
 				'options' =>  array(
 				     '' => __('Normal', 'brad_framework') ,
 					 'medium' => __('Medium', 'brad_framework') ,
+					 'medium2' => __('Above Medium', 'brad_framework') ,
 					 'large' => __('Large', 'brad_framework') 
 			         )
 				) 
@@ -1006,7 +788,7 @@ $brad_shortcodes['icons'] = array(
 			'align' => array(
 				'std' => '',
 				'type' => 'select',
-				'desc' => '' ,
+				'desc' => '',
 				'label' => __('Icons align', 'brad_framework'),
 				'options' =>  array(
 				     '' => __('left', 'brad_framework') ,
@@ -1074,7 +856,7 @@ $brad_shortcodes['icons'] = array(
 	      'title' => array(
 				'std' => '',
 				'type' => 'text',
-				'desc' => '' ,
+				'desc' => '',
 				'label' => __('Icon title ', 'brad_framework')
 			) ,			
 				
@@ -1111,28 +893,104 @@ $brad_shortcodes['button'] = array(
         "style" => array(
             "type" => "select",
             "label" => __("Style", "brad-framework"),
-            "options" =>  array("" => __("Default", "brad-framework")  , "readmore" => __('Read More Button','brad-framework'), "grey" => __("Grey Button", "brad-framework") , "green" =>  __("Green Button", "brad-framework"), "seagreen" => __("Sea Green Button", "brad-framework") , "orange" => __("Orange Button", "brad-framework"), "red" =>  __("Red Button", "brad-framework") , "white" => __("White Button", "brad-framework") , "black" =>  __("Black Button", "brad-framework") , "purple" => __("Purple Button", "brad-framework") , "yellow" =>  __("Yellow Button", "brad-framework")  , "alternate" => __('Alternate Button','brad-framework') , "alternate-white" =>  __('Alternate Transparent Button','brad-framework')  ) ,
+            "options" =>  array("" => __("Default", "brad-framework")  , "readmore" =>  __('Read More Button','brad-framework'),  "alternate" => __('With Border','brad-framework') , 'alternateprimary'  => __('Border With Primary color','brad-framework'),  "alternatewhite" =>   __('With Transparent Border','brad-framework') , "custom" => __("Custom","brad-framework")  ) ,
 			"std" => '' ,
-            "desc" => __("Select the default style for your button.", "brad-framework")
+            "desc" =>  __("Select the default style for your button.", "brad-framework")
             ),
-        "align" => array(
+			
+		"size" => array(
+             "type" => "select",
+             "label" => __("Size", "brad-framework"),
+             "options" => array("normal" => "Normal" , "large" => "Large" , "small" => "Small"),
+             "desc" => __("Select the Button size. Not for readmore button", "brad-framework"),
+			 "std" => "normal"
+        ),	
+		
+		"color-style" => array(
+		    "type" => "select",
+			"label" => __("color", "brad-framework"),
+			"std" => '' ,
+			'desc' => '' ,	
+			'options' => array( "" => __("Default", "brad-framework") , "grey" => __("Grey Button", "brad-framework") , "green" =>  __("Green Button", "brad-framework"), "seagreen" => __("Sea Green Button", "brad-framework") , "orange" => __("Orange Button", "brad-framework"), "red" =>  __("Red Button", "brad-framework") , "white" => __("White Button", "brad-framework") , "black" =>  __("Black Button", "brad-framework") , "purple" => __("Purple Button", "brad-framework") , "yellow" =>  __("Yellow Button", "brad-framework")
+			)
+		 ),
+		 
+		"color" => array(
+            "type" => "colorpicker",
+            "label" => __("Button color", "brad-framework"),
+            "std" => "",
+            "desc" => 'Note: All the option below for related to button color , radius and border only work if button style is selected to custom'
+        ),
+		
+		"color-hover" => array(
+            "type" => "colorpicker",
+            "label" => __("Button color:hover", "brad-framework"),
+            "std" => "",
+            "desc" => ''
+        ),
+	   
+	    "acolor"  =>    array(
+			"type" => "colorpicker",
+			"label" => __("Accent color", "brad-framework"),
+			"std" =>  '#555555',
+			"desc" => ""
+      ),	
+	
+      "acolor-hover" => array(
+		  "type" => "colorpicker",
+		  "label" => __("Accent color:hover", "brad-framework"),
+		  "std" =>  '#444444' ,
+		  "desc" => ""
+		),	
+	
+		
+      "bw" => array(
+		  "type" => "text",
+		  "label" => __("Border Width (in px)", "brad-framework"),
+		  "std" => "0",
+		  "desc" => ""
+	  ),	
+  
+      'bcolor' => array(
+		  "type" => "colorpicker",
+		  "label" => __("Button Border color", "brad-framework"),
+		  'std' => '',
+		  'desc' => ''
+		),
+	
+      "bcolor-hover" => array(
+		  "type" => "colorpicker",
+		  "label" => __("Button Border color:hover", "brad-framework"),
+		  'desc' => '',
+		  'std' => ''
+		),
+	
+      "br" => array(
+		"type" => "select",
+		"label" => __("Button Border Radius", "brad-framework"),
+		'std' => 'default',
+		'desc' => '',
+		"options" => array( 'default' => __('Full') , 'small' => __('Small','brad-framework') ,  'no' => __('None','brad-framework') )
+      ),
+			
+      "align" => array(
 	        "type" => "select",
 	        "label" => __("Align","brad-framework"),
 	        "options" => array(
 	               "justify" => __("Justify","brad-framework") ,
-	               "left" => __("Align Left","brad-framework"),
-				   "right" => __("Align Right","brad-framework") ,
 				   "center" => __("Align Center","brad-framework")
 				  ),
 			 "desc" => "",
 			 "std" => "none"
 			),
+			
         "title" => array(
             "type" => "text",
             "label" => __("Text on the button", "brad-framework"),
             "std" => __("Text on the button", "brad-framework"),
             "desc" => __("Text on the button.", "brad-framework")
          ),
+		 
         "href" => array(
             "type" => "text",
             "label" => __("URL (Link)", "brad-framework"),
@@ -1165,17 +1023,6 @@ $brad_shortcodes['button'] = array(
 			"desc" => ""	  
          ),
 		 
-	 "icon-ds" => array(
-		  "type" => "select",
-		  "label" => __("Icon Visibilty","brad-framework"),
-		  "options" => array(
-					  "hover" => __("Visible on hover","brad-framework") ,
-					  "initial" => __("Initial Visible","brad-framework") ,
-					  ),
-		 "std" => "",
-		 "desc" => ""
-	   ),
-   
    
          "icon-style" => array(
 	         "type" => "select",
@@ -1224,16 +1071,9 @@ $brad_shortcodes['button'] = array(
              "label" => __("Icon Background Color : hover", "brad-framework"),
 	         "desc" => __("Leave Blank for default background color on hover ( Only work for readmore button )","brad-framework"),
              "std" => ''
-         ),	  
-          "size" => array(
-             "type" => "select",
-             "label" => __("Size", "brad-framework"),
-             "options" => array("normal" => "Normal" , "large" => "Large" , "small" => "Small"),
-             "desc" => __("Select the Button size.", "brad-framework"),
-			 "std" => "normal"
-        )
+         )
 	  ),
-	  "shortcode" => '[button icon_ds="{{icon-ds}}" style="{{style}}" align="{{align}}" href="{{href}}" title="{{title}}" target="{{target}}" icon="{{icon}}" icon_align="{{icon-align}}" icon_size="{{icon-size}}" icon_style="{{icon-style}}" icon_c="{{icon-c}}" icon_bc="{{icon-bc}}" icon_bgc="{{icon-bgc}}" icon_bgc_hover="{{icon-bgc-hover}}" size="{{size}}"]' ,
+	  "shortcode" => '[vc_button  style="{{style}}" color_style="{{color-style}}" acolor="{{acolor}}" acolor_hover="{{acolor-hover}}" bw="{{bw}}" bcolor="{{bcolor}}" bcolor_hover="{{bcolor-hover}}"  br="{{br}}" align="{{align}}" href="{{href}}" title="{{title}}" target="{{target}}" icon="{{icon}}" icon_align="{{icon-align}}" icon_size="{{icon-size}}" icon_style="{{icon-style}}" icon_c="{{icon-c}}" icon_bc="{{icon-bc}}" icon_bgc="{{icon-bgc}}" icon_bgc_hover="{{icon-bgc-hover}}" size="{{size}}"]' ,
 	  'no_preview' => true
 );
 
@@ -1248,6 +1088,34 @@ $brad_shortcodes['image'] = array(
       "std" => "",
       "desc" => __("Select image from media library.", "brad-framework")
     ),
+	
+	"img_size" => array(
+      "type" => "select",
+      "label" => __("Image size", "brad-framework"),
+	  "options" => Array( 
+	     "" => __("Default","brad-framework") ,
+		 "thumb-large" => __("Large","brad-framework")  ,
+		 "thumb-medium" => __("Medium","brad-framework")  ,
+		 "thumb-normal" => __("Small","brad-framework") ,
+		 "thumb-large-masonry" =>  __("Masonry Large","brad-framework")  ,
+		 "thumb-medium-masonry" => __("Masonry Medium","brad-framework")  ,
+		 "thumb-normal-masonry" => __("Masonry Small","brad-framework")  ,
+		 "thumbnail" => __("Thumbnail","brad-framework")  ,
+		 "fullwidth" => __("Fullwidth",'brad-framework')  ,
+		 "mini" => __("Mini","brad-framework")  ,	 	 
+		 "custom" =>  __("Custom","brad-framework")  ),
+	  "desc" => ""	,
+	  "std" => "" 
+		 ),
+		 
+	"custom_img_size" => array(
+	  "type" => "text",
+	  "label" => __("Custom Image size", "brad-framework"), 
+      "desc" => __("Enter image size in pixels: 200x100 (Width x Height). Leave empty to use default size. This will not work unless you select the image size to custom", "brad-framework"),
+	  "std" => ""
+    ),
+	
+	
 	
     "css_animation" => array(
       "type" => "select",
@@ -1264,35 +1132,27 @@ $brad_shortcodes['image'] = array(
 	   "std" => "",
 	   "desc" => ""
      ),
-    "img_size" => array(
+	 
+	"img_align" =>  array(
       "type" => "select",
-      "label" => __("Image size", "brad-framework"),
-	  "options" => Array( 
-	         ""  => "default" ,
-		 "large" => "large" ,
-		 "medium" => "medium" ,
-		 "long" => "long" ,
-		 "wide" => "wide",
-		 "full" => "full" ,
-		 "thumbnail" => "thumbnail" ,
-		 "mini" => "mini"  ),
-	  "desc" => ""	,
-	  "std" => "" 
-		 ),
-		 
+      "label" => __("Image Align", "brad-framework"),
+      "std" => "",
+	  "desc" => "" ,  
+      "options" => array("" => __("None", "brad-framework") ,  "left" => __("Left", "brad-framework"), "right" => __("Right", "brad-framework") ,"center" =>  __("Center", "brad-framework") )
+	),
 	
-	 "img_lightbox" => array(
+   "img_lightbox" => array(
       "type" => 'checkbox',
 	  "checkbox_text" => "Yes" ,
       "label" => __("Enable Lightbox Link Icon?", "brad-framework"),
-      "desc" => __("If selected there will be  show lightbox Icon on the top of image.", "brad-framework"),
+      "desc" => __("If selected there will be  lightbox icon.", "brad-framework"),
       "std" => false
     ),
 	
-	 "icon_lightbox" => array(
+	"icon_lightbox" => array(
       "type" => 'iconpicker',
       "label" => __("Lightbox Icon?", "brad-framework"),
-      "std" => '118|ss-air' ,
+      "std" => '' ,
 	  "desc" => "You must have Enalbed the light box icon above."
     ),
 	
@@ -1303,7 +1163,8 @@ $brad_shortcodes['image'] = array(
 	  "checkbox_text" => "Yes" ,
       "std" => false ,
     ),
-     "img_link" => array(
+	
+    "img_link" => array(
       "type" => "text",
 	  "std" => "",
       "label" => __("Custom Image link for Lightbox", "brad-framework"),
@@ -1311,6 +1172,6 @@ $brad_shortcodes['image'] = array(
      
     )
   ),
-  'shortcode' => '[image image="{{image}}" css_animation="{{css_animation}}" css_animation_delay="{{css_animation_delay}}" img_size="{{img_size}}" custom_img_size="{{custom_img_size}}" img_lightbox="{{img_lightbox}}" icon_lightbox="{{icon_lightbox}}" img_link_large="{{img_link_large}}" img_link="{{img_link}}"  ]'
+  'shortcode' => '[vc_single_image image="{{image}}" css_animation="{{css_animation}}" css_animation_delay="{{css_animation_delay}}" img_size="{{img_size}}" custom_img_size="{{custom_img_size}}" img_lightbox="{{img_lightbox}}" icon_lightbox="{{icon_lightbox}}" img_link_large="{{img_link_large}}" img_link="{{img_link}}" img_align="{{img_align}}"  ]'
   );
  

@@ -2790,7 +2790,7 @@ $this->sections[] = array(
 	'icon' => 'el-icon-shopping-cart',
 	'icon_class' => 'icon-small',
     'title' => __('woocommerce', "brad-framework"),
-	'desc' => '<p>Customize the Blog settings .</p>' ,
+	'desc' => '<p>Customize the woocommerce settings .</p>' ,
 	'fields' => array(
 	 
   
@@ -2821,9 +2821,19 @@ $this->sections[] = array(
 	   array( "title" => __( "Enable Cart icon for mobile", "brad-framework"),
 			 "id" => "check_cartmobile",
 			 "default" => 1,
-			 "type" => "switch" ) 		 
+			 "type" => "switch" ) ,
+	  array( "title" => __("Single Product Layout", "brad-framework"),
+		     "id" => "singlepr_layout",
+     
+                  "type" => "select",
+			      "multiselect" => false ,
+                  "options" => array (
+			          "type1" => __("Tabs content at right","brad-framework"), 
+				      "type2" => __("Tabs content at Bottom","brad-framework")
+            )),			 		 
 					
-		)
+		) 
+				
 	);	
 	
                             

@@ -1,4 +1,6 @@
 <?php
+
+ global $brad_data;
 /**
  * The template for displaying product content in the single-product.php template
  *
@@ -51,6 +53,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			do_action( 'woocommerce_single_product_summary' );
 		?>
   </div>
+  
+  <?php if( $brad_data['singlepr_layout'] == 'type2') : ?>
+  </div>
+  </div>
+  <?php endif; ?>
   <!-- .summary -->
   
   <?php

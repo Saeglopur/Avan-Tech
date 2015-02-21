@@ -1742,7 +1742,14 @@ vc_map( array(
       "param_name" => "feature_link",
 	  "description" => "Leave blank if you do't want to have a link for whole box.",
 	),	
-	
+   
+   array(
+      "type" => "dropdown",
+      "heading" => __("Link Target", "brad-framework"),
+      "param_name" => "ftarget",
+      "value" => $target_arr,
+      "dependency" => Array('element' => "href", 'not_empty' => true)
+    ),	
 	
    array(
       "type" => "brad_iconpicker",
@@ -1757,6 +1764,15 @@ vc_map( array(
 	  "description" => "Leave blank if you do't want to have a link for icon",
 	  "dependency" => array("element" => "feature_link" , "is_empty" => true )
 	),	
+
+ array(
+      "type" => "dropdown",
+      "heading" => __("Link Target", "brad-framework"),
+      "param_name" => "itarget",
+      "value" => $target_arr,
+      "dependency" => Array('element' => "href", 'not_empty' => true)
+    ),	
+	
 	
   array(
       "type" => "textfield",
@@ -1793,7 +1809,14 @@ vc_map( array(
 	  "dependency" => array("element" => "feature_link" , "is_empty" => true ),
 	  "description" => "Leave blank if you do't want to have a link for icon",
 	),		
-		
+	
+array(
+      "type" => "dropdown",
+      "heading" => __("Link Target", "brad-framework"),
+      "param_name" => "ttarget",
+      "value" => $target_arr,
+      "dependency" => Array('element' => "href", 'not_empty' => true)
+    ),		
 	
   array(
       "type" => "dropdown",
